@@ -1,13 +1,8 @@
 .Header-logo {
-  animation: Header-logo-spin infinite 20s linear;
-  height: 40px;
-  margin-top: -28px;
+  height: 25px;
+  margin-top: 10px;
 }
 
-@keyframes Header-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 .navbar-brand {
   width: 300px;
   border-right: solid 1px;;
@@ -26,7 +21,7 @@
 }
 
 .notifications-bar {
-  margin-top: 10px;
+  margin-top: 8px;
 }
 .badge {
   margin-left: 5px;

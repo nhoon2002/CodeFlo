@@ -13,9 +13,9 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div className="page-header">
+        
           <h2>{getNiceName(this.props.routes)}{' '}</h2>
-        </div>
+        
 
         <div className="container App-content">
           {this.props.children}
