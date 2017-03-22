@@ -8,11 +8,15 @@ import Home from './containers/Home.jsx';
 import Profile from './containers/Profile.jsx';
 import TodoForm from './containers/TodoForm.jsx';
 import Register from './containers/Register.jsx';
-// import { connect } from 'react-redux';
 
-// @connect((store) => {
-// 	sessions: 
-// })
+import { checkSession } from './actions/usersAction';
+
+const checkSesh = () => {
+	console.log("INSIDE CHECK SESH FUNCTION");
+	store.dispatch(checkSession());
+}
+			
+
 const theRoutes = (
    	<Provider store={store}>
 	  	<Router history={history}>
@@ -20,7 +24,7 @@ const theRoutes = (
 		      <IndexRoute component={Home}/>
 		      <Route path="/profile" component= {Profile} />
 		      <Route path="/todoform" component= {TodoForm} />
-		      <Route path="/register" component= {Register} />
+		      <Route path="/register" onEnter={checkSesh()} component= {Register} />
 		    </Route>
 		</Router>
 	</Provider>

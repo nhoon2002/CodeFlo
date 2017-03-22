@@ -17,10 +17,12 @@ function mapStateToProps (state) {
 	console.log("mapStateToProps DATA", state)
 	return {
 		allData: state,
-		errorMsgs: state.registerReducer.errorMsgs,
-		userAfReg: state.sessionReducer.user,
-		sessionUserId: state.sessionReducer.sessionUserID,
-		isLoggedInReg: state.sessionReducer.isLoggedIn 
+		errorMsgs: state.regErrReducer.errorMsgs,
+		userAfReg: state.registerReducer.user,
+		sessionUserId: state.registerReducer.sessionUserID,
+		isLoggedInReg: state.registerReducer.isLoggedIn,
+		isLoggedInCheck: state.checkSession.isLoggedIn,
+		CheckSeshUserID: state.checkSession.sessionUserID 
 	};
 }
 

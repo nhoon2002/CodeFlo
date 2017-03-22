@@ -13,6 +13,10 @@ var db = require('../models');
 //Sendgrid set-up
 // var email = require('../mail/email');
 
+router.get('/checkssion', function(req, res){
+  console.log("CHECK SESSION ID IN EXPRESS", req.session.userID);
+  res.json({ sessionUserId: req.session.userID })
+})
 
 router.post('/tasks', function(req, res) {
   console.log("\n");
@@ -33,7 +37,7 @@ router.post('/tasks', function(req, res) {
 
 router.post('/register', function(req, res){
 
-  console.log("REGISTER REQ.BODY", req.body);
+  // console.log("REGISTER REQ.BODY", req.body);
 
   var name = req.body.name;
   var username = req.body.username;
@@ -74,7 +78,7 @@ router.post('/register', function(req, res){
         db.users.create(req.body).then(function(data){
           req.session.userID = data.id;
           console.log('\n\n')
-          console.log("POST REGISTER CALL BACK FUNCTION DATA", data);
+          // console.log("POST REGISTER CALL BACK FUNCTION DATA", data);
 
           res.json({data: data, sessionUserId: req.session.userID});
           // Or redirect to another page.

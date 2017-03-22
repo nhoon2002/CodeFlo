@@ -5,7 +5,7 @@
 //Reducer does the editing of the state, which is just a slice of data of the entire store.
 
 //Everytime an action is dispatched, every single reducer will run. We control which reducers do something with the action types
-export function registerReducer(state={ errorMsgs: "" }, action ) {
+export function regErrReducer(state={ errorMsgs: "" }, action ) {
 
 	switch (action.type) {
 		case "ERROR_MSGS": {
@@ -15,12 +15,6 @@ export function registerReducer(state={ errorMsgs: "" }, action ) {
 				errorMsgs: action.payload 
 			}
 		}
-		// case "GET_USER": {
-		// 	return { ...state, user: }
-		// }
-		// case "GET_USER_ERROR": {
-		// 	return {...state, error: payload.err }
-		// }
 		default: {
 			return state;
 		}
@@ -29,6 +23,3 @@ export function registerReducer(state={ errorMsgs: "" }, action ) {
 	return state;
 }
 
-// export function allData(state = {}, action){
-// 	return state;
-// }

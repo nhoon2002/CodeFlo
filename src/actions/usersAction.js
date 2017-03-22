@@ -21,3 +21,16 @@ export function createUser(formData) {
 		});
 	}
 }
+
+export function checkSession() {
+	return function(dispatch) {
+		axios.get('/checkssion').then((data) => {
+			console.log("CHECK SESSION DATA", data);
+			if(data.sessionUserId){
+				dispatch({ type: "SESSION_EXIST", payload: data.sessionUserId });
+			}else{
+				dispatch({ type: "NO_SESSION" })
+			}
+		});
+	}
+}

@@ -12,11 +12,18 @@ import connect from 'react-redux';
 import axios from 'axios';
 
 class Register extends Component {
+
 		constructor(props) {
 			super(props)
 
 			this.handleForm = this.handleForm.bind(this);
+			// this.checkSesh = this.checkSesh.bind(this);
 		}
+
+		// const checkSesh = () => {
+		// 	console.log("INSIDE CHECK SESH FUNCTION");
+		// 	this.props.checkSession();
+		// }
 
 		handleForm(e){
 			console.log("NAAAAAAAAAME", this.refs.name.value)
@@ -35,28 +42,33 @@ class Register extends Component {
 
 		render() {
 			console.log("ERROR MESSAGES", this.props.errorMsgs);
+
+			// const checkSesh = () => {
+			// 	console.log("INSIDE CHECK SESH FUNCTION");
+			// 	this.props.checkSession();
+			// }
 			
-				const errs = this.props.errorMsgs;
+			const errs = this.props.errorMsgs;
 
-				let success = null;
-				let msg = null;
-				console.log("errrs", errs)
-				if(errs){
-					//if putting curly brackets after the arrow function, remember to return the dom elements, in this
-					//case the div messages. If no curly brakcets are used, the items return directly. Either way is 
-					//okay, it is preference.
-					msg = this.props.errorMsgs.map((item, index) => 
-					 <div key={index} className="alert alert-warning">{item.msg}</div>	
-					);
-				}
-				console.log('msg', msg)
+			let success = null;
+			let msg = null;
+			// console.log("errrs", errs)
+			if(errs){
+				//if putting curly brackets after the arrow function, remember to return the dom elements, in this
+				//case the div messages. If no curly brakcets are used, the items return directly. Either way is 
+				//okay, it is preference.
+				msg = this.props.errorMsgs.map((item, index) => 
+				 <div key={index} className="alert alert-warning">{item.msg}</div>	
+				);
+			}
+			// console.log('msg', msg)
 
-					// can also directly put the messages inline the return below instead of mapping and assigning it 
-					// to an variable (msg);
+				// can also directly put the messages inline the return below instead of mapping and assigning it 
+				// to an variable (msg);
 
-					// {errs ? this.state.errArr.map((item, index) => 
-					//  <div key={index} className="alert alert-warning">{item.msg}</div>	
-					// ) : success} 
+				// {errs ? this.state.errArr.map((item, index) => 
+				//  <div key={index} className="alert alert-warning">{item.msg}</div>	
+				// ) : success} 
 
 			
 		return ( <div>
