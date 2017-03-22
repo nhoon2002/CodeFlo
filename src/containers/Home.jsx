@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
-// import Tasks from './Tasks.jsx';
-// import Tasks2 from './Tasks2.jsx';
-import logo from './logo-full.png';
-import './Home.css';
+import React from 'react';
+// import RegisterModal from '../components/RegisterModal.jsx'
+// import LoginModal from '../components/LoginModal.jsx'
 
 
-class Home extends Component {
+
+
+const Home = React.createClass ({
 	render() {
 		return (
         <div>
         <div className="jumbotron">
-						<h1>Welcome to <img id="logo" src={logo} /></h1>
-						<button className="btn btn-primary">Sign In</button>
+						<h1>Welcome to</h1>
         </div>
 
         </div>
 
     );
-  };
-}
+  }
+});
 
 export default Home;
