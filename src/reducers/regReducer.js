@@ -16,10 +16,19 @@ export function registerReducer(state={
 			console.log("ACTION PAYLOAD SUCCES REGISTER", action.payload);
 			// req.session.isLogged = true;
 			// req.session.user_id = action.payload.id;
-			return { ...state, 
+			return { 
+				...state, 
 				isLoggedIn: true,
 				sessionUserID: action.payload.sessionUserId,
 				user: action.payload.user
+			}
+		}
+		case "DESTROY_REGIST_SESS": {
+			return {
+				...state,
+				isLoggedIn: false,
+				sessionUserID: null,
+				user: null
 			}
 		}
 		default: {

@@ -107,3 +107,31 @@ li:hover{
  body {
    background-color: #B2EBF2;
  }
+
+ .holder .img-circle {
+     width: 200px;
+     height: 200px;
+     border-radius: 50%;
+     margin: 20px 0 20px 0;
+ }
+
+ .holder {
+   border-style: solid;
+   text-align: center;
+ }
+
+ .buttons-holder {
+   text-align: center;
+   margin: 30px;
+ }
+
+ .profIcons {
+   width: 50px;
+   margin: 10px;
+ }
+
+.actionButtons {
+
+  margin: 10px;
+
+}

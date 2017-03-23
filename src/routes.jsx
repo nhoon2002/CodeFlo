@@ -11,6 +11,7 @@ import Register from './containers/Register.jsx';
 
 import { checkSession } from './actions/usersAction';
 
+// <Route path="/register" onEnter={checkSesh()} component= {Register} />
 const checkSesh = () => {
 	console.log("INSIDE CHECK SESH FUNCTION");
 	store.dispatch(checkSession());
@@ -21,10 +22,9 @@ const theRoutes = (
    	<Provider store={store}>
 	  	<Router history={history}>
 		    <Route path="/" component={App}>
-		      <IndexRoute component={Home}/>
+		      <IndexRoute onEnter={checkSesh} component={Home}/>
 		      <Route path="/profile" component= {Profile} />
 		      <Route path="/todoform" component= {TodoForm} />
-		      <Route path="/register" onEnter={checkSesh()} component= {Register} />
 		    </Route>
 		</Router>
 	</Provider>

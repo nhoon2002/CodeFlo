@@ -1,23 +1,47 @@
 import React, { Component } from 'react';
-// import Tasks from './Tasks.jsx';
-// import Tasks2 from './Tasks2.jsx';
-// import logo from './logo-full.png';
-// import './Home.css';
+import Register from './Register.jsx';
+import regisCont from './registerCont.jsx';
+// import LoginModal from '../components/LoginModal.jsx'
+
+
 
 
 class Home extends Component {
 	render() {
-		return (
+
+        let random = null;
+        
+        return (
         <div>
-        <div className="jumbotron">
-						<h1>Welcome to <img id="logo" src="assets/img/logo-full.png" /></h1>
-						<button className="btn btn-primary">Sign In</button>
-        </div>
+            <div className="jumbotron">
+                <h1>Welcome to</h1>
+                
+                {
+                    this.props.isLoggedInCheck || this.props.isLoggedInReg 
+
+                    ?
+
+                    random
+
+                    :
+
+                    <Register 
+                        open={this.props.openModal}
+                        close={this.props.closeModal}
+                        show={this.props.showModal}
+                        create={this.props.createUser}
+                        regErr={this.props.errorMsgs}
+                    />
+                    
+
+                }
+                
+            </div>
 
         </div>
 
     );
-  };
-}
+  }
+};
 
 export default Home;

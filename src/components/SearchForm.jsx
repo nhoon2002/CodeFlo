@@ -1,31 +1,61 @@
-import React, { Component }from 'react';
+import axios from 'axios';
+import React, { Component, Props }from 'react';
+import {AsyncTypeahead} from 'react-bootstrap-typeahead';
+const AsyncExample = React.createClass({
+  getInitialState() {
+    return {
+      options: [],
+    };
+  },
 
-class SearchForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
 
   render() {
     return (
-      <form className="navbar-form navbar-left" onSubmit={this.handleSubmit}>
-          <input type="text" className="form-control" placeholder="Search" value={this.state.value} onChange={this.handleChange} />
-          <button type="submit" className="btn btn-primary">Submit</button>
-      </form>
-    );
-  }
-}
 
-export default SearchForm;
+
+      <AsyncTypeahead
+        labelKey="username"
+        onSearch={this._handleSearch}
+        options={this.state.options}
+        placeholder="Search for a user..."
+        renderMenuItemChildren={(option, props, index) => (
+          <div>
+            <img
+              className='img-circle'
+              src='http://placehold.it/30x30'
+              style={{
+
+                marginRight: '10px'
+
+              }}
+            />
+            <span>{option.username}</span>
+            {/* .login is the username field from the github response. */}
+          </div>
+
+        )}
+      />
+
+
+    );
+  },
+
+  _handleSearch(query) {
+    if (!query) {
+      return;
+    }
+
+
+    fetch(`/register/${query}`)
+      .then(resp => resp.json())
+      // // .then(json => console.log(this))
+      .then(json => this.setState({options: json}))
+
+
+      // this.setState({options: data})
+
+
+
+  },
+});
+export default AsyncExample;

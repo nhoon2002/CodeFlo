@@ -15,6 +15,12 @@ export function regErrReducer(state={ errorMsgs: "" }, action ) {
 				errorMsgs: action.payload 
 			}
 		}
+		case "SUCC_CLR_ERRS": {
+			return {
+				...state,
+				errorMsgs: null
+			}
+		}
 		default: {
 			return state;
 		}
