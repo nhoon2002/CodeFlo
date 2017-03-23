@@ -184,9 +184,10 @@ app.use(expressValidator({
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
+    console.log("USERNAME IS PASSPORT.USE", username)
     db.users.findOne({
     	where: {
-    		username: username
+    		email: username
     	}
 
 
@@ -259,14 +260,12 @@ app.use(function(req, res, next){
       id: req.user.id,
       name: req.user.name,
       username: req.user.username,
-      email: req.user.email,
-      description: req.user.description,
-      img: req.user.img
+      email: req.user.email
     };
   }
 
-  console.log('SUCCES MESSAGE', res.locals.succes_msg);
-	console.log('locals user', res.locals.user);
+ //  console.log('SUCCES MESSAGE', res.locals.succes_msg);
+	// console.log('locals user', res.locals.user);
 	console.log('session one', req.session);
 	console.log('session user', req.session.user);
 	console.log('req.user', req.user);

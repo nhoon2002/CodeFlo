@@ -23,8 +23,8 @@ const theRoutes = (
 	  	<Router history={history}>
 		    <Route path="/" component={App}>
 		      <IndexRoute onEnter={checkSesh} component={Home}/>
-		      <Route path="/profile" component= {Profile} />
-		      <Route path="/todoform" component= {TodoForm} />
+		      <Route path="/profile" onEnter={checkSesh} component= {Profile} />
+		      <Route path="/todoform" onEnter={checkSesh} component= {TodoForm} />
 		    </Route>
 		</Router>
 	</Provider>

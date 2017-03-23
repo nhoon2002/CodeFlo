@@ -89,6 +89,12 @@ router.post('/register', function(req, res){
   }
 });
 
+router.post('/login', 
+  passport.authenticate('local'), function(req, res) {
+    console.log("REQ USER AFTER LOG IN", req.user)
+    res.json(req.user)
+});
+
 router.get('/logout', function(req, res){
   console.log("SESSION OBJECT BEFORE DESRTOY", req.session)
   console.log("SESSION OBJECT BEFORE DESRTOY", req.session.userID)

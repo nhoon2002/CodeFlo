@@ -22,7 +22,9 @@ function mapStateToProps (state) {
 		isLoggedInReg: state.registerReducer.isLoggedIn,
 		isLoggedInCheck: state.checkSession.isLoggedIn,
 		CheckSeshUserID: state.checkSession.sessionUserID,
-		showModal: state.modalReducer.showModal
+		showModal: state.modalReducer.showModal,
+		loginModal: state.modalReducer.loginModal,
+		loggedInUser: state.loginReducer.user
 	};
 }
 

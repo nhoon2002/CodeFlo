@@ -26,6 +26,7 @@ export function createUser(formData) {
 	}
 }
 
+// SEND BACK USER SESSION INFO ALSO ON "ONENTER"  // SEND BACK USER SESSION INFO ALSO ON "ONENTER" 
 export function checkSession() {
 	return function(dispatch) {
 		axios.get('/checkssion').then((data) => {
@@ -36,6 +37,21 @@ export function checkSession() {
 				dispatch({ type: "NO_SESSION" })
 			}
 		});
+	}
+}
+
+export function login(loginInput) {
+	return function(dispatch) {
+		
+		axios.post('/login', loginInput).then((user) => {
+			console.log("USER AFTER LOGIN", user);
+			if(user){
+				dispatch({ type: "LOGGED_IN", payload: user })
+			}
+		}).catch((err) => {
+			debugger;
+		});
+		
 	}
 }
 
@@ -62,3 +78,16 @@ export function closeModal() {
 	}
 }
 
+export function openModalL() {
+	return { 
+		type: "OPEN_MODAL_LOG", 
+		payload: true
+	}
+}
+
+export function closeModalL() {
+	return { 
+		type: "CLOSE_MODAL_LOG", 
+		payload: false
+	}
+}

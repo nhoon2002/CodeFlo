@@ -6,7 +6,8 @@
 
 //Everytime an action is dispatched, every single reducer will run. We control which reducers do something with the action types
 export function modalReducer(state={ 
-		showModal: false
+		showModal: false,
+		loginModal: false
 	}, action ) {
 
 	switch (action.type) {
@@ -22,6 +23,18 @@ export function modalReducer(state={
 			return {
 				...state,
 				showModal: action.payload
+			}
+		}
+		case "OPEN_MODAL_LOG": {
+			return {
+				...state,
+				loginModal: action.payload
+			}
+		}
+		case "CLOSE_MODAL_LOG": {
+			return {
+				...state,
+				loginModal: action.payload
 			}
 		}
 		default: {

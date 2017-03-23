@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Register from './Register.jsx';
+import LoginModal from '../components/LoginModal.jsx';
 import regisCont from './registerCont.jsx';
+
 // import LoginModal from '../components/LoginModal.jsx'
 
 
@@ -24,7 +26,7 @@ class Home extends Component {
                     random
 
                     :
-
+                    <div>
                     <Register 
                         open={this.props.openModal}
                         close={this.props.closeModal}
@@ -33,9 +35,15 @@ class Home extends Component {
                         regErr={this.props.errorMsgs}
                     />
                     
-
+                    <LoginModal
+                        open={this.props.openModalL}
+                        close={this.props.closeModalL}
+                        show={this.props.loginModal}
+                        logg={this.props.login}
+                    />
+                    </div>
                 }
-                
+
             </div>
 
         </div>

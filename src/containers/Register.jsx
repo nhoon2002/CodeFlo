@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import connect from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { Popover } from 'react-bootstrap';
 import { Tooltip } from 'react-bootstrap';
@@ -12,8 +11,6 @@ import { OverlayTrigger } from 'react-bootstrap';
 //then call the function directly without the dot notation like so getUser();
 // import * as user from '../actions/usersAction'
 // import { createUser } from '../actions/usersAction';
-
-import axios from 'axios';
 
 class Register extends Component {
 
