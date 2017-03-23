@@ -18,7 +18,7 @@ const theRoutes = (
    	<Provider store={store}>
 	  	<Router history={history}>
 		    <Route path="/" component={App}>
-        <Route path="todos" component={TodoApp}/>
+        <Route path="/todos" component={TodoApp}/>
 		      <IndexRoute component={Home}/>
 		      <Route path="/profile" component= {Profile} />
 		      <Route path="/register" component= {Register} />
