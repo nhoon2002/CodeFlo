@@ -9,6 +9,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 //MySQL database set-up
 var db = require('../models');
+var Team = require('../mongoModels/Team.js')
 
 //Sendgrid set-up
 // var email = require('../mail/email');
@@ -69,7 +70,7 @@ router.post('/register', function(req, res){
       // console.log("DATA USER NAME", data.username)
       if(data){
         console.log("INSIDE USERNAME VALIDATION")
-        
+
         var taken = "Username in use. Please choose another.";
 
         res.json(taken);
@@ -89,7 +90,39 @@ router.post('/register', function(req, res){
   }
 });
 
-router.post('/login', 
+router.post('/teams', function(req, res){
+
+  var teamname = req.body.teamname;
+  var description = req.body.description;
+  var tech = req.body.tech;
+
+  //Using express validator*************************************************************************
+// TODO: validation for team creation
+  // req.checkBody('name', 'Must type in name.').notEmpty();
+  // req.checkBody('username', 'Must type in Username.').notEmpty();
+  // req.checkBody('email', 'Must type in email.').notEmpty();
+  // var errors = req.validationErrors();
+  // if(errors){
+  //   console.log("FLASH ERRORS", errors);
+  //   res.json(errors);
+  // } else {
+    var teamInfo = {};
+    teamInfo.teamname = teamname;
+    teamInfo.description = description;
+    teamInfo.tech = tech;
+
+    var entry = new Team(teamInfo);
+    entry.save(function(err, doc){
+      if (err) {
+         console.log(err);
+      } else {
+         console.log(doc);
+      }
+
+   });
+});
+
+router.post('/login',
   passport.authenticate('local'), function(req, res) {
     console.log("REQ USER AFTER LOG IN", req.user)
     res.json(req.user)
@@ -102,7 +135,7 @@ router.get('/logout', function(req, res){
     console.log("SESSION OBJECT AFTER DESRTOY", req.session)
     // console.log("SESSION OBJECT AFTER DESRTOY", req.session.userID)
     res.send(false);
-    
+
   });
 
 });

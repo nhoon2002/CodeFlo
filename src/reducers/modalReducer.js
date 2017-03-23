@@ -5,7 +5,7 @@
 //Reducer does the editing of the state, which is just a slice of data of the entire store.
 
 //Everytime an action is dispatched, every single reducer will run. We control which reducers do something with the action types
-export function modalReducer(state={ 
+export function modalReducer(state={
 		showModal: false,
 		loginModal: false
 	}, action ) {
@@ -35,6 +35,18 @@ export function modalReducer(state={
 			return {
 				...state,
 				loginModal: action.payload
+			}
+		}
+		case "OPEN_MODAL_TEAM": {
+			return {
+				...state,
+				teamModal: action.payload
+			}
+		}
+		case "CLOSE_MODAL_TEAM": {
+			return {
+				...state,
+				teamModal: action.payload
 			}
 		}
 		default: {

@@ -11,3 +11,23 @@
 //   - Invite to Project
 //
 //
+
+
+import React, { Component } from 'react';
+
+import ProjectForm from '../components/forms/ProjectForm.jsx';
+class NewProject extends Component {
+
+	render(){
+   return(
+      <ProjectForm
+         open={this.props.openModalT}
+         close={this.props.closeModalT}
+         show={this.props.teamModal}
+         create={this.props.createTeam}
+      />
+   )
+   }
+}
+
+export default NewProject;

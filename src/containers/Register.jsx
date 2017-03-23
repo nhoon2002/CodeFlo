@@ -55,7 +55,7 @@ class Register extends Component {
 
 	render() {
 		console.log("ERROR MESSAGES", this.props.regErr);
-		
+
 		const errs = this.props.regErr;
 
 		let success = null;
@@ -63,20 +63,20 @@ class Register extends Component {
 		// console.log("errrs", errs)
 		if(errs){
 			//if putting curly brackets after the arrow function, remember to return the dom elements, in this
-			//case the div messages. If no curly brakcets are used, the items return directly. Either way is 
+			//case the div messages. If no curly brakcets are used, the items return directly. Either way is
 			//okay, it is preference.
-			msg = this.props.regErr.map((item, index) => 
-			 <div key={index} className="alert alert-warning">{item.msg}</div>	
+			msg = this.props.regErr.map((item, index) =>
+			 <div key={index} className="alert alert-warning">{item.msg}</div>
 			);
 		}
 		// console.log('msg', msg)
 
-			// can also directly put the messages inline the return below instead of mapping and assigning it 
+			// can also directly put the messages inline the return below instead of mapping and assigning it
 			// to an variable (msg);
 
-			// {errs ? this.state.errArr.map((item, index) => 
-			//  <div key={index} className="alert alert-warning">{item.msg}</div>	
-			// ) : success} 
+			// {errs ? this.state.errArr.map((item, index) =>
+			//  <div key={index} className="alert alert-warning">{item.msg}</div>
+			// ) : success}
 
 		return ( <div>
 			<Button
@@ -92,7 +92,7 @@ class Register extends Component {
 					<Modal.Title>Register</Modal.Title>
 				</Modal.Header>
 					<Modal.Body>
-				
+
 
 					<form className="form-signin">
 						{errs ? msg[0] : success}

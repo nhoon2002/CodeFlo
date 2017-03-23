@@ -24,6 +24,7 @@ function mapStateToProps (state) {
 		CheckSeshUserID: state.checkSession.sessionUserID,
 		showModal: state.modalReducer.showModal,
 		loginModal: state.modalReducer.loginModal,
+		teamModal: state.modalReducer.teamModal,
 		loggedInUser: state.loginReducer.user
 	};
 }
