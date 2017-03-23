@@ -1,61 +1,108 @@
 import React from 'react';
-import * as Redux from 'react-redux';
-import {Link} from 'react-router';
+import connect from 'react-redux';
+// import logo from './logo.svg';
+// import profilepic from './profilepic.jpg'
+import AsyncExample from './SearchForm.jsx';
+import { Link } from 'react-router';
+// import './Header.css';
+class Header extends React.Component {
+  constructor(props){
+    super(props);
+
+    this.logOut = this.logOut.bind(this);
+  }
+
+  logOut(){
+    this.props.logout();
+  }
+
+  render() {
+    let noContent = null;
+  return(
+    <div>
+        {
+          this.props.logCheck || this.props.logRegCheck
+
+          ?
+          <nav className="navbar navbar-default">
+            <div className="container-fluid">
+
+              <div className="navbar-header">
+                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span className="sr-only">Toggle navigation</span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                </button>
+                  <img src='assets/img/logo-icon.png' className="Header-logo" alt="logo" />
+
+              </div>
 
 
-var actions = require('../actions/taskActions.jsx');
+              <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul className="nav navbar-nav">
+                  <li><Link to="/">Home</Link></li>
 
-// import AsyncExample from './SearchForm.jsx';
-// import { Link } from 'react-router';
+                    <li><Link to="/todoform">ToDo</Link></li>
+                    <li><Link to="/profile">Profile</Link></li>
 
-export class Header extends React.Component {
-  render () {
-    return(
+                  <li><AsyncExample/></li>
 
-   <nav className="navbar navbar-default">
-   <div className="container-fluid">
+                </ul>
 
-     <div className="navbar-header">
-       <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-         <span className="sr-only">Toggle navigation</span>
-         <span className="icon-bar"></span>
-         <span className="icon-bar"></span>
-         <span className="icon-bar"></span>
-       </button>
-         <img src='../assets/img/logo-icon.png' className="header-logo" alt="logo" />
+                <ul className="nav navbar-nav navbar-right">
 
-     </div>
-
-
-     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-       <ul className="nav navbar-nav">
-         <li><Link to="/">Home</Link></li>
-         <li><Link to="/">ToDo</Link></li>
-         <li><Link to="/">Profile</Link></li>
-         {/* <li><AsyncExample/></li> */}
-
-       </ul>
-
-       <ul className="nav navbar-nav navbar-right">
-         <li className="notifications-bar">
-           <button className="btn btn-primary" type="button">Notifications
-             <span className="badge">4</span>
-           </button>
-         </li>
-         <li>
-           <img className='navbar-profilepic img-circle' src='http://placehold.it/50x50' alt='profilepic'/>
-         </li>
-         <li><a href="#">Logout</a></li>
+                    <li className="notifications-bar">
+                      <button className="btn btn-primary" type="button">Notifications
+                        <span className="badge">4</span>
+                      </button>
+                    </li>
+                    <li>
+                      <img className='navbar-profilepic img-circle' src='/assets/img/profilepic.jpg' alt='profilepic'/>
+                    </li>
+                    <li onClick={this.logOut}>Logout</li>
 
 
-       </ul>
-     </div>
-   </div>
- </nav>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          :
+
+          <nav className="navbar navbar-default">
+            <div className="container-fluid">
+
+              <div className="navbar-header">
+                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span className="sr-only">Toggle navigation</span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                </button>
+                  <img src='assets/img/logo-icon.png' className="Header-logo" alt="logo" />
+
+              </div>
 
 
- );
- }
-};
+              <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul className="nav navbar-nav">
+                  <li><Link to="/">Home</Link></li>
 
-export default Redux.connect()(Header);
+                  <li><AsyncExample/></li>
+
+                </ul>
+
+                <ul className="nav navbar-nav navbar-right">
+                    <li>Login</li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        }
+    </div>
+  );
+  }
+}
+
+export default Header;

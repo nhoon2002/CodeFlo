@@ -13,6 +13,11 @@ var db = require('../models');
 //Sendgrid set-up
 // var email = require('../mail/email');
 
+router.get('/checkssion', function(req, res){
+  console.log("CHECK SESSION ID IN EXPRESS", req.session.userID);
+  res.json({ sessionUserId: req.session.userID })
+})
+>>>>>>> 779add616b5ee325180b6659635920d0960e408a
 
 router.post('/tasks', function(req, res) {
   console.log("\n");
@@ -33,7 +38,6 @@ router.post('/tasks', function(req, res) {
 
 router.post('/register', function(req, res){
 
-  console.log("REGISTER REQ.BODY", req.body);
 
   var name = req.body.name;
   var username = req.body.username;
@@ -42,7 +46,6 @@ router.post('/register', function(req, res){
   var password2 = req.body.password2;
 
   //Using express validator*************************************************************************
-
 
   req.checkBody('name', 'Must type in name.').notEmpty();
   req.checkBody('username', 'Must type in Username.').notEmpty();
@@ -54,7 +57,7 @@ router.post('/register', function(req, res){
   var errors = req.validationErrors();
 
   if(errors){
-    console.log("FLASH ERRORS", errors)
+    console.log("FLASH ERRORS", errors);
     res.json(errors);
   }else{
 
@@ -63,20 +66,21 @@ router.post('/register', function(req, res){
         username: username
       }
     }).then(function(data){
+      // console.log("DATA USER NAME", data.username)
       if(data){
-        // req.flash('Taken', 'That username is already taken.');
+        console.log("INSIDE USERNAME VALIDATION")
 
+        var taken = "Username in use. Please choose another.";
 
-
-        res.send('user exists.');
+        res.json(taken);
       }else{
 
-        console.log("line73 req.body",req.body);
-        db.users.create(req.body).then(function(data){
-          console.log('\n\n');
-          console.log("POST REGISTER CALL BACK FUNCTION DATA", data);
+        db.users.create(req.body).then(function(user){
+          req.session.userID = user.id;
+          console.log('\n\n')
+          // console.log("POST REGISTER CALL BACK FUNCTION DATA", data);
 
-          res.json(data);
+          res.json({data: user, sessionUserId: req.session.userID});
           // Or redirect to another page.
         });
 
@@ -84,28 +88,16 @@ router.post('/register', function(req, res){
     });
   }
 });
-router.get('/register/:query', function(req,res) {
-  console.log('running get: register');
-  var query = req.params.query;
 
-  console.log("hi",query);
+router.get('/logout', function(req, res){
+  console.log("SESSION OBJECT BEFORE DESRTOY", req.session)
+  console.log("SESSION OBJECT BEFORE DESRTOY", req.session.userID)
+  req.session.destroy(function(err){
+    console.log("SESSION OBJECT AFTER DESRTOY", req.session)
+    // console.log("SESSION OBJECT AFTER DESRTOY", req.session.userID)
+    res.send(false);
 
-    db.users.findAll({
-
-      where: {
-        username: {$like: '%'+query+'%'}
-      }
-    }).then(function (data) {
-        // console.log(data);
-        // var array1 = [];
-        // array1.push(data);
-        res.json(data);
-          // return data;
-
-
-
-    });
-
+  });
 
 });
 

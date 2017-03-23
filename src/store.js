@@ -13,11 +13,15 @@ import promise from "redux-promise-middleware";
 
 import rootReducer from './reducers/index.js';
 
+
 import {searchTextReducer, showCompletedReducer, todosReducer, authReducer} from './reducers/taskReducers.jsx';
+
 // axsios
 
 //If making an initial state and passing as a preloadedState to createStore, need to make a reducer
 //for each property in the intial state. The reason being the reducer has access to the state. So
+
+
 //This is like setting the initial state for thee reducers here instead of doing it directly in the
 //reducer function itself.
 

@@ -26,6 +26,12 @@ const AsyncExample = React.createClass({
                 height: '24px',
                 marginRight: '10px',
                 width: '24px',
+
+              className='img-circle'
+              src='http://placehold.it/30x30'
+              style={{
+
+                marginRight: '10px'
               }}
             />
             <span>{option.username}</span>

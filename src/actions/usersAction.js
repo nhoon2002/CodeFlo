@@ -16,8 +16,47 @@ export function createUser(formData) {
 					sessionUserId: data.data.sessionUserId,
 					user: data.data.data
 					}
+					dispatch({ type: "SUCC_CLR_ERRS" });
+
+					dispatch({ type: "CLOSE_MODAL", payload: false });
 				});
 			}
 		});
+	}
+}
+
+export function checkSession() {
+	return function(dispatch) {
+		axios.get('/checkssion').then((data) => {
+			console.log("CHECK SESSION DATA", data);
+			if(data.data.sessionUserId){
+				dispatch({ type: "SESSION_EXIST", payload: data.data.sessionUserId });
+			}else{
+				dispatch({ type: "NO_SESSION" })
+			}
+		});
+	}
+}
+
+export function logout(){
+	return function(dispatch) {
+		axios.get('/logout').then((data) => {
+			dispatch({ type: "NO_SESSION" })
+			dispatch({ type: "DESTROY_REGIST_SESS" })
+		})
+	}
+}
+
+export function openModal() {
+	return {
+		type: "OPEN_MODAL",
+		payload: true
+	}
+}
+
+export function closeModal() {
+	return {
+		type: "CLOSE_MODAL",
+		payload: false
 	}
 }

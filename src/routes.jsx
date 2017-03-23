@@ -5,6 +5,7 @@ import store, { history } from './store.js';
 import App from './containers/App.jsx';
 // import Main from './containers/Main.jsx';
 import Home from './containers/Home.jsx';
+
 import TodoApp from './components/TodoApp.jsx';
 import Profile from './containers/Profile.jsx';
 import TodoForm from './containers/TodoForm.jsx';
@@ -14,17 +15,29 @@ import Register from './containers/Register.jsx';
 // @connect((store) => {
 // 	sessions:
 // })
+
+
+import { checkSession } from './actions/usersAction';
+
+// <Route path="/register" onEnter={checkSesh()} component= {Register} />
+const checkSesh = () => {
+	console.log("INSIDE CHECK SESH FUNCTION");
+	store.dispatch(checkSession());
+}
+
+
+
 const theRoutes = (
    	<Provider store={store}>
 	  	<Router history={history}>
 		    <Route path="/" component={App}>
+				<IndexRoute onEnter={checkSesh} component={Home}/>
         <Route path="/todos" component={TodoApp}/>
-		      <IndexRoute component={Home}/>
 		      <Route path="/profile" component= {Profile} />
-		      <Route path="/register" component= {Register} />
 		    </Route>
 		</Router>
 	</Provider>
   );
+
 
 export default theRoutes;

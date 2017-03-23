@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 // import makeRoutes from './routes.jsx';
 // import store from './store';
 // import { Provider } from 'react-redux';
-// var {Provider} = require('react-redux');
-var {hashHistory} = require('react-router');
 import theRoutes from './routes.jsx';
 import Main from './containers/Main.jsx';
 
