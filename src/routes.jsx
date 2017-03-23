@@ -6,8 +6,9 @@ import App from './containers/App.jsx';
 // import Main from './containers/Main.jsx';
 import Home from './containers/Home.jsx';
 import Profile from './containers/Profile.jsx';
-import TodoForm from './containers/TodoForm.jsx';
+// import TodoForm from './containers/TodoForm.jsx';
 import Register from './containers/Register.jsx';
+import NewProject from './containers/NewProject.jsx';
 
 import { checkSession } from './actions/usersAction';
 
@@ -16,7 +17,7 @@ const checkSesh = () => {
 	console.log("INSIDE CHECK SESH FUNCTION");
 	store.dispatch(checkSession());
 }
-			
+
 
 const theRoutes = (
    	<Provider store={store}>
@@ -24,7 +25,8 @@ const theRoutes = (
 		    <Route path="/" component={App}>
 		      <IndexRoute onEnter={checkSesh} component={Home}/>
 		      <Route path="/profile" onEnter={checkSesh} component= {Profile} />
-		      <Route path="/todoform" onEnter={checkSesh} component= {TodoForm} />
+		      <Route path="/newproject" onEnter={checkSesh} component= {NewProject} />
+		      {/* <Route path="/todoform" onEnter={checkSesh} component= {TodoForm} /> */}
 		    </Route>
 		</Router>
 	</Provider>
