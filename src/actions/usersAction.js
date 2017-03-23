@@ -16,10 +16,11 @@ export function createUser(formData) {
 					sessionUserId: data.data.sessionUserId,
 					user: data.data.data
 					}
+				 })
 					dispatch({ type: "SUCC_CLR_ERRS" });
 
 					dispatch({ type: "CLOSE_MODAL", payload: false });
-				});
+
 			}
 		});
 	}

@@ -85,6 +85,7 @@ export var updateTodo = (id, updates) => {
 
 export var startToggleTodo = (id, completed) => {
   return (dispatch, getState) => {
+
     var uid = getState().auth.uid;
     //Add mongo ref here and update 'var todoRef'
 

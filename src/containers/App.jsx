@@ -16,9 +16,9 @@ function mapStateToProps (state) {
 	return {
 		allData: state,
 		errorMsgs: state.regErrReducer.errorMsgs,
-		userAfReg: state.registerReducer.user,
-		sessionUserId: state.registerReducer.sessionUserID,
-		isLoggedInReg: state.registerReducer.isLoggedIn,
+		userAfReg: state.regReducer.user,
+		sessionUserId: state.regReducer.sessionUserID,
+		isLoggedInReg: state.regReducer.isLoggedIn,
 		isLoggedInCheck: state.checkSession.isLoggedIn,
 		CheckSeshUserID: state.checkSession.sessionUserID,
 		showModal: state.modalReducer.showModal

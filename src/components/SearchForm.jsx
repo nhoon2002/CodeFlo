@@ -12,7 +12,7 @@ const AsyncExample = React.createClass({
   render() {
     return (
 
-
+// Set an action later with axio request
       <AsyncTypeahead
         labelKey="username"
         onSearch={this._handleSearch}
@@ -25,14 +25,11 @@ const AsyncExample = React.createClass({
               style={{
                 height: '24px',
                 marginRight: '10px',
-                width: '24px',
-
+                width: '24px'
+              }}
               className='img-circle'
               src='http://placehold.it/30x30'
-              style={{
-
-                marginRight: '10px'
-              }}
+            
             />
             <span>{option.username}</span>
             {/* .login is the username field from the github response. */}

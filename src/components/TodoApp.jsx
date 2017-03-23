@@ -11,8 +11,6 @@ export class TodoApp extends React.Component {
   render () {
     return (
       <div>
-        <Header/>
-
         <h1 className="page-title">Todo App</h1>
 
         <div className="row">

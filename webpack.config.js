@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 var webpack = require('webpack');
 var path = require('path');
 var envFile = require('node-env-file');
@@ -10,14 +10,11 @@ try {
 } catch (e) {
 
 }
-=======
-var path = require('path');
->>>>>>> 779add616b5ee325180b6659635920d0960e408a
+
 
 module.exports = {
 
   // This is the entry point or start of our react applicaton
-<<<<<<< HEAD
   entry: [
     'script!jquery/dist/jquery.min.js',
     'script!foundation-sites/dist/foundation.min.js',
@@ -26,17 +23,12 @@ module.exports = {
   externals: {
     jquery: 'jQuery'
   },
-=======
-  entry: "./src/app.js",
-
->>>>>>> 779add616b5ee325180b6659635920d0960e408a
   // The plain compiled JavaScript will be output into this file
   output: {
     path: path.join(__dirname, "public"),
 
     filename: "bundle.js"
   },
-<<<<<<< HEAD
   resolve: {
     root: __dirname,
     modulesDirectories: [
@@ -53,9 +45,7 @@ module.exports = {
   },
   extensions: ['', '.js', '.jsx']
 },
-=======
 
->>>>>>> 779add616b5ee325180b6659635920d0960e408a
   // This section desribes the transformations we will perform
   module: {
     loaders: [

@@ -5,7 +5,7 @@
 //Reducer does the editing of the state, which is just a slice of data of the entire store.
 
 //Everytime an action is dispatched, every single reducer will run. We control which reducers do something with the action types
-export function registerReducer(state={
+export function regReducer(state={
 		isLoggedIn: false,
 		sessionUserID: "",
 		user: ""
