@@ -16,16 +16,30 @@
 import React, { Component } from 'react';
 
 import ProjectForm from '../components/forms/ProjectForm.jsx';
+import ProjectList from '../components/forms/ProjectList.jsx';
 class NewProject extends Component {
+
+
 
 	render(){
    return(
-      <ProjectForm
-         open={this.props.openModalT}
-         close={this.props.closeModalT}
-         show={this.props.teamModal}
-         create={this.props.createTeam}
-      />
+		 <div className='container'>
+
+		      <ProjectForm
+
+		         open={this.props.openModalT}
+		         close={this.props.closeModalT}
+		         show={this.props.teamModal}
+		         create={this.props.createTeam}
+						 router={this.props.router}
+						//  updateTeams = {this.props.updateTeams
+		      />
+
+
+						<ProjectList {...this.props}/>
+
+
+		</div>
    )
    }
 }

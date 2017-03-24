@@ -37,8 +37,14 @@ class ProjectForm extends Component {
 
    		console.log("FORMMMM INPUTTTT", formInput);
 
-   		this.props.create(formInput);
-   	}
+
+        this.props.create(formInput)
+
+
+      }
+
+
+
    	close() {
    		this.props.close()
    	}

@@ -84,30 +84,17 @@ router.post('/register', function(req, res){
   })
 };
 });
-router.get('/register/:query', function(req,res) {
-  console.log('running get: register');
-  var query = req.params.query;
+router.get('/newProject/:id', function(req,res) {
+  var id = req.params.id;
+  console.log('controller: getting details for team:' + id );
 
-  console.log("hi",query);
-
-    db.users.findAll({
-
-      where: {
-        username: {$like: '%'+query+'%'}
-      }
-    }).then(function (data) {
-        // console.log(data);
-        // var array1 = [];
-        // array1.push(data);
-        res.json(data);
-          // return data;
-
-
-
-    });
-
-
+  Team.find({"_id": id}).exec(function(err, docs) {
+    console.log(docs);
+    res.json(docs)
+  });
 });
+
+
 
 router.get('/register/users', function(req,res) {
    db.users.find(
@@ -122,23 +109,14 @@ router.get('/register/users', function(req,res) {
       res.json(data);
    })
 })
-
 router.post('/teams', function(req, res){
 
   var teamname = req.body.teamname;
   var description = req.body.description;
   var tech = req.body.tech;
 
-  //Using express validator*************************************************************************
 // TODO: validation for team creation
-  // req.checkBody('name', 'Must type in name.').notEmpty();
-  // req.checkBody('username', 'Must type in Username.').notEmpty();
-  // req.checkBody('email', 'Must type in email.').notEmpty();
-  // var errors = req.validationErrors();
-  // if(errors){
-  //   console.log("FLASH ERRORS", errors);
-  //   res.json(errors);
-  // } else {
+
     var teamInfo = {};
     teamInfo.teamname = teamname;
     teamInfo.description = description;
@@ -150,9 +128,21 @@ router.post('/teams', function(req, res){
          console.log(err);
       } else {
          console.log(doc);
+         res.json(doc)
       }
 
    });
+});
+
+router.get('/teams', function(req, res){
+console.log("getting to the controller get Teams");
+  Team.find({}).exec(function(err, docs) {
+    console.log(docs);
+    res.json(docs)
+  });
+
+
+
 });
 
 router.post('/login',

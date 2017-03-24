@@ -14,8 +14,8 @@ const Home = React.createClass ({
         return (
         <div>
 
-            <div className="jumbotron">
-                <h1>Welcome to</h1>
+            <div className="jumbotron home">
+                <h1 className="homeBanner">Welcome to</h1>
 
                 {
                     this.props.isLoggedInCheck || this.props.isLoggedInReg

@@ -30,22 +30,39 @@ export function createTeam(formData) {
 		axios.post('/teams', formData).then((data) => {
 			console.log("RETURN DATA FROM AXIOS TEAM POST", data);
 			console.log('\n\n');
-			console.log("RETURNed DATA ERRORS", data.data);
+			// console.log("RETURNed DATA ERRORS", data.data);
 			console.log('\n\n');
-				// TODO: Dispaych Something here.
-				// dispatch({ type: "SET_REGIST_SESS", payload: {
-				// 	sessionUserId: data.data.sessionUserId,
-				// 	user: data.data.data
-				// 	}
-				// });
-				//
-				// dispatch({ type: "SUCC_CLR_ERRS" });
-				//
-				// dispatch({ type: "CLOSE_MODAL", payload: false });
+			var teamnames = [];
+			var techs = [];
+			var descriptions = [];
+			teamnames.push(data.data.teamname);
+			techs.push(data.data.tech);
+			descriptions.push(data.data.description);
+			dispatch({type: "TEAM_CREATE", payload: {teamname: teamnames, tech: techs, description: descriptions}})
+			dispatch({ type: "CLOSE_MODAL_TEAM", payload: false });
+			teamnames = [];
+			techs = [];
+			descriptions = [];
+
+
 			}
 		);
 	}
 };
+
+// export function updateTeams() {
+// 	return function(dispatch) {
+// 		axios.get('/teams').then((data) => {
+// 			console.log("RETURN DATA FROM AXIOS ALL TEAMS GET", data);
+// 			console.log('\n\n');
+// 			var teams = [];
+// 			teams.push(data.data)
+// 			dispatch({type: "UPDATE_TEAMS", payload: {teams: teams}})
+// 		})
+//
+// 	}
+// }
+
 
 // SEND BACK USER SESSION INFO ALSO ON "ONENTER"  // SEND BACK USER SESSION INFO ALSO ON "ONENTER"
 export function checkSession() {

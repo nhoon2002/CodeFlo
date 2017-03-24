@@ -9,7 +9,8 @@ import { registerReducer } from "./regReducer";
 import { checkSession } from "./checkSession";
 import { modalReducer } from "./modalReducer";
 import { loginReducer } from "./loginReducer";
-
+import { teamCreateReducer } from "./teamCreateReducer";
+// import { teamUpdateReducer } from "./teamUpdateReducer";
 
 const rootReducer = combineReducers({
 	regErrReducer,
@@ -17,6 +18,8 @@ const rootReducer = combineReducers({
 	modalReducer,
 	checkSession,
 	loginReducer,
+	teamCreateReducer,
+	// teamUpdateReducer,
 	routing: routerReducer
 });
 export default rootReducer;

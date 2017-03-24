@@ -29,7 +29,13 @@ function mapStateToProps (state) {
 		showModal: state.modalReducer.showModal,
 		loginModal: state.modalReducer.loginModal,
 		teamModal: state.modalReducer.teamModal,
-		loggedInUser: state.loginReducer.user
+		loggedInUser: state.loginReducer.user,
+		team: {
+			teamname: state.teamCreateReducer.teamnames,
+			tech: state.teamCreateReducer.techs,
+			description: state.teamCreateReducer.descriptions
+		}
+		// allteams: state.teamUpdateReducer.teams,
 
 	};
 }
