@@ -5,7 +5,7 @@ import store, { history } from './store.js';
 import App from './containers/App.jsx';
 // import Main from './containers/Main.jsx';
 import Home from './containers/Home.jsx';
-import Profile from './containers/Profile.jsx';
+// import Profile from './containers/Profile.jsx';
 // import TodoForm from './containers/TodoForm.jsx';
 import Register from './containers/Register.jsx';
 import NewProject from './containers/NewProject.jsx';
@@ -25,7 +25,7 @@ const theRoutes = (
 		    <Route path="/" component={App}>
 
 		      <IndexRoute onEnter={checkSesh} component={Home}/>
-		      <Route path="/profile" onEnter={checkSesh} component= {Profile} />
+		      {/* <Route path="/profile" onEnter={checkSesh} component= {Profile} /> */}
 		      <Route path="/newproject" onEnter={checkSesh} component= {NewProject} />
 		      {/* <Route path="/todoform" onEnter={checkSesh} component= {TodoForm} /> */}
 

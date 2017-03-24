@@ -14,10 +14,8 @@ import { loginReducer } from "./loginReducer";
 const rootReducer = combineReducers({
 	regErrReducer,
 	registerReducer,
-	sessionReducer,
 	modalReducer,
 	checkSession,
-	modalReducer,
 	loginReducer,
 	routing: routerReducer
 });

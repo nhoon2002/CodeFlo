@@ -63,16 +63,6 @@ export function checkSession() {
 }
 
 
-
-export function openModal() {
-	return function(dispatch) {
-		dispatch({ type: "OPEN_MODAL", payload: true})
-	}
-}
-export function closeModal() {
-	return function(dispatch) {
-		dispatch({ type: "CLOSE_MODAL", payload: false})
-
 export function login(loginInput) {
 	return function(dispatch) {
 
