@@ -10,73 +10,65 @@ import { OverlayTrigger } from 'react-bootstrap';
 class LoginModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {showModal: false,
-            name: "",
-            username: "",
-            password: "",
-            email: "",
-            errors: false,
-            errArr: []
-        };
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
+
+    this.open = this.open.bind(this)
+    this.close = this.close.bind(this)
+
+    this.handleForm = this.handleForm.bind(this);
 
   }
 
 
+  handleForm(e){
+    // console.log("NAAAAAAAAAME", this.refs.name.value)
+    var loginInput = {
+      username: this.refs.email.value,
+      password: this.refs.password.value
+    }
+
+    console.log("LOG IN FORMMMM INPUTTTT", loginInput);
+
+    this.props.logg(loginInput);
+  }
+
   close() {
-    this.setState({ showModal: false });
+    this.props.close()
   }
 
   open() {
-    this.setState({ showModal: true });
+    this.props.open()
   }
 
-handleForm(event) {
-    var formInput = {
-        email: this.state.email,
-        password: this.state.password
-    };
+  render() {
 
-}
-
-render() {
-
-    return (
-      <div>
+      return (
+        <div>
 
 
-        <Button
-          bsStyle="primary"
-          onClick={this.open}
-        >
-          Login
-        </Button>
+          <Button
+            bsStyle="primary"
+            onClick={this.open}
+          >
+            Login
+          </Button>
 
-        <Modal show={this.state.showModal} onHide={this.close}>
-          <Modal.Header closeButton>
-            <Modal.Title>Login</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Text in a modal</h4>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+          <Modal show={this.props.show} onHide={this.close}>
+            <Modal.Header closeButton>
+              <Modal.Title>Login</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
 
-            <hr />
-            <form className="form-signin">
+              <form className="form-signin">
 
-
-
-              <div className="form-group">
-                <label htmlFor="inputEmail" className="sr-only">Email</label>
-                <input type="email" name="email" id="inputEmail" className="form-control" placeholder="Email" value={this.state.email}/>
-              </div>
-
+                <div className="form-group">
+                  <label htmlFor="inputEmail" className="sr-only">Email</label>
+                  <input type="email" ref="email" id="inputEmail" className="form-control" placeholder="Email" />
+                </div>
 
                 <div className="form-group">
                   <label htmlFor="inputPassword" className="sr-only">Password</label>
-                  <input type="password" name="password" id="inputPassword" className="form-control" placeholder="Password" value={this.state.password}
-                    onChange={this.checkPassOne}/>
-                  </div>
+                  <input type="password" ref="password" id="inputPassword" className="form-control" placeholder="Password" />
+                </div>
 
               </form>
 
@@ -92,8 +84,11 @@ render() {
 
 
 
-    );
-  }
+
+
+      );
+    }
+
 }
 
 export default LoginModal;

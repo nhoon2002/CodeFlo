@@ -3,15 +3,24 @@ var Schema = mongoose.Schema;
 
 var TeamSchema = new Schema({
 
-    teamName: {
+
+   teamname: {
         type: String,
         trim: true,
         required: "Team Name is Required"
     },
-    teamMembers: [{
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    }]
+   description: {
+      type: String
+   },
+   tech: {
+      type: String
+   }
+   //  teamMembers: [{
+   //      type: Schema.Types.ObjectId,
+   //      ref: "User"
+   //  }]
+
+
 });
 
 var Team = mongoose.model('Team', TeamSchema);

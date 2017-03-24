@@ -9,10 +9,15 @@ var LocalStrategy = require('passport-local').Strategy;
 
 //MySQL database set-up
 var db = require('../models');
+var Team = require('../mongoModels/Team.js')
 
 //Sendgrid set-up
 // var email = require('../mail/email');
 
+router.get('/checkssion', function(req, res){
+  console.log("CHECK SESSION ID IN EXPRESS", req.session.userID);
+  res.json({ sessionUserId: req.session.userID })
+})
 
 router.post('/tasks', function(req, res) {
   console.log("\n");
@@ -33,7 +38,7 @@ router.post('/tasks', function(req, res) {
 
 router.post('/register', function(req, res){
 
-  console.log("REGISTER REQ.BODY", req.body);
+  // console.log("REGISTER REQ.BODY", req.body);
 
   var name = req.body.name;
   var username = req.body.username;
@@ -63,26 +68,21 @@ router.post('/register', function(req, res){
         username: username
       }
     }).then(function(data){
-      if(data){
-        // req.flash('Taken', 'That username is already taken.');
+
+
+        db.users.create(req.body).then(function(user){
+          req.session.userID = user.id;
+          console.log('\n\n')
+          // console.log("POST REGISTER CALL BACK FUNCTION DATA", data);
+
+          res.json({data: user, sessionUserId: req.session.userID});
 
 
 
-        res.send('user exists.');
-      }else{
 
-        console.log("line73 req.body",req.body);
-        db.users.create(req.body).then(function(data){
-          console.log('\n\n');
-          console.log("POST REGISTER CALL BACK FUNCTION DATA", data);
-
-          res.json(data);
-          // Or redirect to another page.
-        });
-
-      }
     });
-  }
+  })
+};
 });
 router.get('/register/:query', function(req,res) {
   console.log('running get: register');
@@ -122,6 +122,56 @@ router.get('/register/users', function(req,res) {
       res.json(data);
    })
 })
+
+router.post('/teams', function(req, res){
+
+  var teamname = req.body.teamname;
+  var description = req.body.description;
+  var tech = req.body.tech;
+
+  //Using express validator*************************************************************************
+// TODO: validation for team creation
+  // req.checkBody('name', 'Must type in name.').notEmpty();
+  // req.checkBody('username', 'Must type in Username.').notEmpty();
+  // req.checkBody('email', 'Must type in email.').notEmpty();
+  // var errors = req.validationErrors();
+  // if(errors){
+  //   console.log("FLASH ERRORS", errors);
+  //   res.json(errors);
+  // } else {
+    var teamInfo = {};
+    teamInfo.teamname = teamname;
+    teamInfo.description = description;
+    teamInfo.tech = tech;
+
+    var entry = new Team(teamInfo);
+    entry.save(function(err, doc){
+      if (err) {
+         console.log(err);
+      } else {
+         console.log(doc);
+      }
+
+   });
+});
+
+router.post('/login',
+  passport.authenticate('local'), function(req, res) {
+    console.log("REQ USER AFTER LOG IN", req.user)
+    res.json(req.user)
+});
+
+router.get('/logout', function(req, res){
+  console.log("SESSION OBJECT BEFORE DESRTOY", req.session)
+  console.log("SESSION OBJECT BEFORE DESRTOY", req.session.userID)
+  req.session.destroy(function(err){
+    console.log("SESSION OBJECT AFTER DESRTOY", req.session)
+    // console.log("SESSION OBJECT AFTER DESRTOY", req.session.userID)
+    res.send(false);
+
+  });
+
+});
 
 router.get('*', function(req,res) {
   console.log('sup');

@@ -53,6 +53,7 @@ database.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
+
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
       var namespace = param.split('.')
@@ -164,7 +165,7 @@ app.use(function(req, res, next){
 });
 
 
-// -------------------------------------------------
+
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
       var namespace = param.split('.')
@@ -246,34 +247,10 @@ passport.deserializeUser(function(user, done) {
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(function(req, res, next){
-	//res.locals has global scope.
-	// res.locals.error_msg = req.flash('error_msg');
-	// res.locals.error = req.flash('error');
-	//This had to be req.user instead of req.session, since user is what gets returns from the passport
-	//deserialize function.
-	// res.locals.guy = req.user || null;
 
-  if (req.user) {
-    req.session.user = {
-      id: req.user.id,
-      name: req.user.name,
-      username: req.user.username,
-      email: req.user.email,
-      description: req.user.description,
-      img: req.user.img
-    };
-  }
 
-  console.log('SUCCES MESSAGE', res.locals.succes_msg);
-	console.log('locals user', res.locals.user);
-	console.log('session one', req.session);
-	console.log('session user', req.session.user);
-	console.log('req.user', req.user);
-	next(); //Needed to call the next here to call the next app.use middleware. Before
-	//I didnt have this, the app.use('/', routes) was never getting executed since the next() was not being
-	//called.
-});
+
+
 
 // app.use(flash());
 
