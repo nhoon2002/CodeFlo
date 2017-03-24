@@ -1,6 +1,7 @@
 export function checkSession(state = {
 		isLoggedIn: false,
-		sessionUserID: ""
+		sessionUserID: "",
+		sessionUser: ""
 	}, action) {
 
 	switch(action.type){
@@ -10,14 +11,16 @@ export function checkSession(state = {
 			return {
 				...state,
 				isLoggedIn: true,
-				sessionUserID: action.payload
+				sessionUserID: action.payload.checkSessionId,
+				sessionUser: action.payload.checkSessionUser
 			}
 		}
 		case "NO_SESSION": {
 			return {
 				...state,
 				isLoggedIn: false,
-				sessionUserID: null
+				sessionUserID: null,
+				sessionUser: null
 			}
 		}
 		default: {

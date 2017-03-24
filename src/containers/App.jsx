@@ -19,12 +19,13 @@ function mapStateToProps (state) {
 		errorMsgs: state.regErrReducer.errorMsgs,
 		userAfReg: state.registerReducer.user,
 		sessionUserId: state.registerReducer.sessionUserID,
+		regSessUser: state.registerReducer.sessionUserInfo,
 		isLoggedInReg: state.registerReducer.isLoggedIn,
 		isLoggedInCheck: state.checkSession.isLoggedIn,
 		CheckSeshUserID: state.checkSession.sessionUserID,
+		CheckSeshUser: state.checkSession.sessionUser,
 		showModal: state.modalReducer.showModal,
-		loginModal: state.modalReducer.loginModal,
-		loggedInUser: state.loginReducer.user
+		loginModal: state.modalReducer.loginModal
 	};
 }
 

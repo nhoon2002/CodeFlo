@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Task = require('../mongoModels/Task.js');
+var monUser = require('../mongoModels/User')
 var path = require('path');
 
 //Passport JS Set-up
@@ -15,7 +16,7 @@ var db = require('../models');
 
 router.get('/checkssion', function(req, res){
   console.log("CHECK SESSION ID IN EXPRESS", req.session.userID);
-  res.json({ sessionUserId: req.session.userID })
+  res.json({ sessionUserId: req.session.userID, sessionUserInfo: req.session.userData })
 })
 
 router.post('/tasks', function(req, res) {
@@ -61,43 +62,59 @@ router.post('/register', function(req, res){
     res.json(errors);
   }else{
 
-    db.users.findOne({
-      where: {
-        username: username
-      }
-    }).then(function(data){
-      // console.log("DATA USER NAME", data.username)
-      if(data){
-        console.log("INSIDE USERNAME VALIDATION")
+    // db.users.findOne({
+    //   where: {
+    //     username: username
+    //   }
+    // }).then(function(data){
+    //   // console.log("DATA USER NAME", data.username)
+    //   if(data){
+    //     console.log("INSIDE USERNAME VALIDATION")
         
-        var taken = "Username in use. Please choose another.";
+    //     var taken = "Username in use. Please choose another.";
 
-        res.json(taken);
-      }else{
+    //     res.json(taken);
+    //   }else{
 
         db.users.create(req.body).then(function(user){
-          req.session.userID = user.id;
+          // console.log("UUUSSSSSSSSSSSSSSSER", user)
+          // req.session.userID = user.id;
           console.log('\n\n')
           // console.log("POST REGISTER CALL BACK FUNCTION DATA", data);
 
-          res.json({data: user, sessionUserId: req.session.userID});
-          // Or redirect to another page.
-        });
+          monUser.create({ name: user.name, username: user.username, SQLid: user.id }, function (err, doc){
+            console.log("DOCS AFTER CREATE", doc);
+            req.session.userID = doc._id;
+            req.session.userData = doc;
 
-      }
-    });
+            res.json({user: doc, sessionUserId: req.session.userID, sessionInfo: req.session.userData});
+          });
+
+        });
   }
 });
 
 router.post('/login', 
   passport.authenticate('local'), function(req, res) {
-    console.log("REQ USER AFTER LOG IN", req.user)
-    res.json(req.user)
+    console.log("REQ USER AFTER LOG IN", req.user.dataValues.id)
+    
+    monUser.findOne({ SQLid: req.user.dataValues.id }, function(err, doc){
+      if(err){
+        console.log(err)
+      }else{
+        req.session.userID = doc._id;
+        req.session.userData = doc;
+        console.log("DOCS IN LOGIN ROUTE", doc)
+        res.json({sessionUserId: req.session.userID, sessionInfo: req.session.userData})
+      }
+    })
 });
 
 router.get('/logout', function(req, res){
   console.log("SESSION OBJECT BEFORE DESRTOY", req.session)
   console.log("SESSION OBJECT BEFORE DESRTOY", req.session.userID)
+  req.logOut();
+
   req.session.destroy(function(err){
     console.log("SESSION OBJECT AFTER DESRTOY", req.session)
     // console.log("SESSION OBJECT AFTER DESRTOY", req.session.userID)
