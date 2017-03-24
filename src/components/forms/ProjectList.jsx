@@ -15,7 +15,8 @@ class ProjectList extends React.Component {
   componentDidMount() {
     axios.get('/teams')
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
+        console.table(res.data);
         const teams = res.data.map(obj => obj);
         this.setState({ teams });
       });

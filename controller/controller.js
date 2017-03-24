@@ -84,6 +84,34 @@ router.post('/register', function(req, res){
   })
 };
 });
+
+// for searchform
+router.get('/register/:query', function(req,res) {
+  console.log('running get: register');
+  var query = req.params.query;
+
+  console.log("hi",query);
+
+    db.users.findAll({
+
+      where: {
+        username: {$like: '%'+query+'%'}
+      }
+    }).then(function (data) {
+        // console.log(data);
+        // var array1 = [];
+        // array1.push(data);
+        res.json(data);
+          // return data;
+
+
+
+    });
+
+
+});
+
+
 router.get('/newProject/:id', function(req,res) {
   var id = req.params.id;
   console.log('controller: getting details for team:' + id );

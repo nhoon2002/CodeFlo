@@ -19,8 +19,9 @@ const AsyncExample = React.createClass({
         options={this.state.options}
         placeholder="Search for a user..."
         renderMenuItemChildren={(option, props, index) => (
-          <div>
+          <div onClick={this._handleClick} data-user={option.username}>
             <img
+              data-user={option.username}
               className='img-circle'
               src='http://placehold.it/30x30'
               style={{
@@ -29,7 +30,7 @@ const AsyncExample = React.createClass({
 
               }}
             />
-            <span>{option.username}</span>
+            <span data-user={option.username}>{option.username}</span>
             {/* .login is the username field from the github response. */}
           </div>
 
@@ -57,5 +58,10 @@ const AsyncExample = React.createClass({
 
 
   },
+  _handleClick(e){
+    var id = e.target.dataset.user;
+    console.log(id);
+    this.props.router.push('/user/'+id);
+  }
 });
 export default AsyncExample;

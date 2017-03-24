@@ -12,6 +12,7 @@ class Main extends Component {
            logout={this.props.logout}
            logCheck={this.props.isLoggedInCheck}
            logRegCheck={this.props.isLoggedInReg}
+           router={this.props.router}
          />
 
 
