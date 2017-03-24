@@ -9,6 +9,7 @@ import Home from './containers/Home.jsx';
 // import TodoForm from './containers/TodoForm.jsx';
 import Register from './containers/Register.jsx';
 import NewProject from './containers/NewProject.jsx';
+import Profile from './containers/Profile.jsx';
 import ProjectDetails from './containers/ProjectDetails.jsx'
 import { checkSession } from './actions/usersAction';
 
@@ -25,7 +26,7 @@ const theRoutes = (
 		    <Route path="/" component={App}>
 
 		      <IndexRoute onEnter={checkSesh} component={Home}/>
-		      {/* <Route path="/profile" onEnter={checkSesh} component= {Profile} /> */}
+		      <Route path="/profile" onEnter={checkSesh} component= {Profile} />
 		      <Route path="/newproject" onEnter={checkSesh} component= {NewProject} />
 		      <Route path="/newproject/:id" component= {ProjectDetails} />
 

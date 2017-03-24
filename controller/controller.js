@@ -136,6 +136,7 @@ router.get('/newProject/:id', function(req,res) {
     console.log(docs);
     res.json(docs)
   });
+});
 
 
 
@@ -154,6 +155,7 @@ router.get('/register/users', function(req,res) {
       res.json(data);
    })
 })
+
 router.post('/teams', function(req, res){
 
   var teamname = req.body.teamname;
@@ -225,5 +227,6 @@ router.get('*', function(req,res) {
   res.sendFile(path.join(__dirname + "/../public/index.html"));
   console.log('sup');
 });
+
 
 module.exports = router;

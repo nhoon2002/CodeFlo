@@ -19,12 +19,6 @@ class Main extends Component {
         <div className="container Main-content">
 
 
-          <Header
-            logout={this.props.logout}
-            logCheck={this.props.isLoggedInCheck}
-            logRegCheck={this.props.isLoggedInReg}
-          />
-
 
           {React.cloneElement(this.props.children, this.props)}
 

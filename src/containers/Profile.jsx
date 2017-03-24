@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProfileItems from '../components/ProfileItems.jsx';
+
 
 
 class Profile extends Component {

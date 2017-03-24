@@ -46,6 +46,8 @@ class Header extends React.Component {
 
                     <li><Link to="/todoform">ToDo</Link></li>
                     <li><Link to="/profile">Profile</Link></li>
+                    <li><Link to="/newproject">Projects</Link></li>
+
 
                   <li><AsyncExample {...this.props}/></li>
 
