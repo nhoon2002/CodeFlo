@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { browserHistory } from "react-router";
 
 
 export function createUser(formData) {
@@ -9,15 +10,18 @@ export function createUser(formData) {
 			console.log("RETURNed DATA ERRORS", data.data);
 			console.log('\n\n');
 			if(data.data.length > 0){
+				dispatch({ type: "SUCC_CLR_ERRS" });
 				dispatch({ type: "ERROR_MSGS", payload: data.data })
 			}else{
 				console.log("INSIDE CREATE USER ELSE", data)
-				dispatch({ type: "SET_REGIST_SESS", payload: {
-					sessionUserId: data.data.sessionUserId,
-					user: data.data.data
+				dispatch({ type: "SESSION_EXIST", payload: {
+						sessionUserId: data.data.sessionUserId,
+						sessionUser: data.data.sessionInfo,
+						user: data.data.user
 					}
 				});
-
+				// sessionUserID: action.payload.checkSessionId,
+				// sessionUser: action.payload.checkSessionUser
 				dispatch({ type: "SUCC_CLR_ERRS" });
 
 				dispatch({ type: "CLOSE_MODAL", payload: false });
@@ -70,27 +74,38 @@ export function checkSession() {
 		axios.get('/checkssion').then((data) => {
 			console.log("CHECK SESSION DATA", data);
 			if(data.data.sessionUserId){
-				dispatch({ type: "SESSION_EXIST", payload: data.data.sessionUserId });
+				dispatch({ type: "SESSION_EXIST", payload: {
+						checkSessionId : data.data.sessionUserId,
+						checkSessionUser: data.data.sessionUserInfo
+					}
+				});
 			}else{
 				dispatch({ type: "NO_SESSION" })
-
+				browserHistory.push('/');
 			}
 		});
 	}
 }
 
-
 export function login(loginInput) {
 	return function(dispatch) {
 
-		axios.post('/login', loginInput).then((user) => {
-			console.log("USER AFTER LOGIN", user);
-			if(user){
-				dispatch({ type: "LOGGED_IN", payload: user })
+		axios.post('/login', loginInput).then((data) => {
+			console.log("USER AFTER LOGIN", data);
+			if(data){
+				dispatch({ type: "SESSION_EXIST", payload: {
+		            checkSessionId: data.data.sessionUserId,
+				    checkSessionUser: data.data.sessionInfo
+				    }
+				});
+				dispatch({ type: "CLOSE_MODAL_LOG", payload: false})
+			}else{
+				dispatch({ type: "NO_SESSION" })
 			}
-		}).catch((err) => {
-			debugger;
-		});
+		})
+		// .catch((err) => {
+		// 	debugger;
+		// });
 
 	}
 }
@@ -98,11 +113,13 @@ export function login(loginInput) {
 export function logout(){
 	return function(dispatch) {
 		axios.get('/logout').then((data) => {
-			dispatch({ type: "NO_SESSION" })
-			dispatch({ type: "DESTROY_REGIST_SESS" })
-		})
+			dispatch({ type: "NO_SESSION" });
+			dispatch({ type: "DESTROY_REGIST_SESS" });
+			browserHistory.push('/');
+		});
 	}
 }
+
 
 export function openModal() {
 	return {

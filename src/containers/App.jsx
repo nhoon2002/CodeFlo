@@ -19,23 +19,25 @@ function mapStateToProps (state) {
 	console.log("mapStateToProps DATA", state)
 	return {
 		allData: state,
-
 		errorMsgs: state.regErrReducer.errorMsgs,
 		userAfReg: state.registerReducer.user,
 		sessionUserId: state.registerReducer.sessionUserID,
+		regSessUser: state.registerReducer.sessionUserInfo,
 		isLoggedInReg: state.registerReducer.isLoggedIn,
 		isLoggedInCheck: state.checkSession.isLoggedIn,
 		CheckSeshUserID: state.checkSession.sessionUserID,
+		CheckSeshUser: state.checkSession.sessionUser,
 		showModal: state.modalReducer.showModal,
 		loginModal: state.modalReducer.loginModal,
 		teamModal: state.modalReducer.teamModal,
-		loggedInUser: state.loginReducer.user,
+		// loggedInUser: state.loginReducer.user,
 		team: {
 			teamname: state.teamCreateReducer.teamnames,
 			tech: state.teamCreateReducer.techs,
 			description: state.teamCreateReducer.descriptions
 		}
 		// allteams: state.teamUpdateReducer.teams,
+
 
 	};
 }

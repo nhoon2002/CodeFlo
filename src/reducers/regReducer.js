@@ -8,6 +8,7 @@
 export function registerReducer(state={
 		isLoggedIn: false,
 		sessionUserID: "",
+		sessionUserInfo: "",
 		user: ""
 	}, action ) {
 
@@ -20,6 +21,7 @@ export function registerReducer(state={
 				...state, 
 				isLoggedIn: true,
 				sessionUserID: action.payload.sessionUserId,
+				sessionUserInfo: action.payload.sessionUserInfo,
 				user: action.payload.user
 			}
 		}
