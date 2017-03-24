@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ProfileItems from '../components/ProfileItems.jsx';
 
 
-const Profile = React.createClass ({
+class Profile extends Component {
 	render() {
 		return (
 
@@ -11,7 +11,7 @@ const Profile = React.createClass ({
           <div className="col-md-6 holder">
               <img className="img-circle" src="http://www.placehold.it/200x200" />
               <hr />
-              <h2>John Doe</h2>
+              <h2>{this.props.CheckSeshUser.name}</h2>
               <hr />
               <h4>Link: <a href="#">www.porfolio.com/john</a></h4>
               <div className="icons-holder">
@@ -36,6 +36,6 @@ const Profile = React.createClass ({
 
     );
   }
-});
+}
 
 export default Profile;

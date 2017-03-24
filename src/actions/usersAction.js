@@ -10,16 +10,18 @@ export function createUser(formData) {
 			console.log("RETURNed DATA ERRORS", data.data);
 			console.log('\n\n');
 			if(data.data.length > 0){
+				dispatch({ type: "SUCC_CLR_ERRS" });
 				dispatch({ type: "ERROR_MSGS", payload: data.data })
 			}else{
 				console.log("INSIDE CREATE USER ELSE", data)
-				dispatch({ type: "SET_REGIST_SESS", payload: {
-					sessionUserId: data.data.sessionUserId,
-					sessionUserInfo: data.data.sessionInfo,
-					user: data.data.user
+				dispatch({ type: "SESSION_EXIST", payload: {
+						sessionUserId: data.data.sessionUserId,
+						sessionUser: data.data.sessionInfo,
+						user: data.data.user
 					}
 				});
-
+				// sessionUserID: action.payload.checkSessionId,
+				// sessionUser: action.payload.checkSessionUser
 				dispatch({ type: "SUCC_CLR_ERRS" });
 
 				dispatch({ type: "CLOSE_MODAL", payload: false });
@@ -41,6 +43,7 @@ export function checkSession() {
 				});
 			}else{
 				dispatch({ type: "NO_SESSION" })
+				browserHistory.push('/');
 			}
 		});
 	}
@@ -57,6 +60,7 @@ export function login(loginInput) {
 				    checkSessionUser: data.data.sessionInfo	
 				    } 
 				});
+				dispatch({ type: "CLOSE_MODAL_LOG", payload: false})
 			}else{
 				dispatch({ type: "NO_SESSION" })
 			}
