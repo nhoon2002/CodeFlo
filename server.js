@@ -39,7 +39,7 @@ app.use(session({
 // -------------------------------------------------
 
 // MongoDB configuration (Change this URL to your own DB)
-mongoose.connect("mongodb://localhost/sampledatabse");
+mongoose.connect("mongodb://localhost/sampledatabse10");
 var database = mongoose.connection;
 
 

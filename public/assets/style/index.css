@@ -136,6 +136,7 @@ li:hover{
 .actionButtons {
 
   margin: 10px;
+  margin-left: 245px;
 
 }
 
@@ -146,4 +147,15 @@ li:hover{
 }
 .jumbotron.teams h1 {
   color: #B29600;
+}
+.editUsername:hover {
+  cursor: pointer;
+}
+.editSkills:hover {
+  cursor: pointer;
+}
+
+.createButton {
+  width: 100%;
+  margin-bottom: 20px;
 }

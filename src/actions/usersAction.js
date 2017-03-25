@@ -1,5 +1,7 @@
 import axios from 'axios';
+import fetch from 'isomorphic-fetch'
 import { browserHistory } from "react-router";
+
 
 export function addMember(userid, teamid) {
 	return function(dispatch) {
@@ -11,13 +13,14 @@ export function addMember(userid, teamid) {
 	}
 }
 
-export function setTodos(todos) {
-	return function(dispatch) {
-		axios.post('/todo', todos).then((data) => {
-			console.log('RETURN TODOS', data);
-		})
-	}
-}
+// export function setTodos(todos) {
+// 	return function(dispatch) {
+// 		axios.post('/todo', todos).then((data) => {
+// 			console.log('RETURN TODOS', data);
+// 		})
+// 	}
+// }
+
 
 
 
@@ -132,9 +135,10 @@ export function login(loginInput) {
 
 export function logout(){
 	return function(dispatch) {
+		console.log("INSIDE LOG OUT ACTION");
 		axios.get('/logout').then((data) => {
+			console.log("DATA AFTER SERVER LOG OUT", data)
 			dispatch({ type: "NO_SESSION" });
-			dispatch({ type: "DESTROY_REGIST_SESS" });
 			browserHistory.push('/');
 		});
 	}
@@ -182,3 +186,55 @@ export function closeModalT() {
 
 	}
 }
+
+export function getPhoto(username, id){
+	console.log("username", username)
+	return function (dispatch) {
+		fetch(`https://api.github.com/users/${username}`).then(function(response){
+			return response.json()
+		}).then(function(json){
+			console.log(json.avatar_url);
+			let avatar_url = json.avatar_url;
+			console.log(avatar_url)
+			if(avatar_url){
+				axios.post('/savepic/' + id, { avatarURL: avatar_url }).then((data) => {
+					console.log(data);
+					dispatch({ type: "SESSION_EXIST", payload: {
+			            checkSessionId: data.data.sessionUserId,
+					    checkSessionUser: data.data.sessionInfo
+					    }
+					});
+
+				})
+			}else{
+				// let avatar_url = "http://www.liveanimalslist.com/birds/images/hen-white-and-black-color.jpg"
+				// axios.post('/savepic/' + id, { avatarURL: avatar_url }).then((data) => {
+				// 	console.log("DEFAULT IMAGE", data)
+				// 	dispatch({ type: "SESSION_EXIST", payload: {
+			 //            checkSessionId: data.data.sessionUserId,
+				// 	    checkSessionUser: data.data.sessionInfo
+				// 	    }
+				// 	});
+				// })
+				return;
+			}
+		})
+
+	}
+}
+
+// export function editUsername(id){
+// 	return function(dispatch){
+// 		axios.post('/edit/username', { id: id }).then((data) => {
+
+// 		})
+// 	}
+// }
+
+// export function editSkills(id){
+// 	return function(dispatch){
+// 		axios.post('/edit/skills', { id: id }).then((data) => {
+
+// 		})
+// 	}
+// }

@@ -59,6 +59,7 @@ class ProjectForm extends Component {
         return (
            <div>
              <Button
+            className="createButton"
     				bsStyle="primary"
     				onClick={this.open}
     			>

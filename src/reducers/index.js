@@ -5,7 +5,6 @@ import { routerReducer } from "react-router-redux";
 
 
 import { regErrReducer } from "./regErrReducer";
-import { registerReducer } from "./regReducer";
 import { checkSession } from "./checkSession";
 import { modalReducer } from "./modalReducer";
 import { todosReducer } from "./todosReducer";
@@ -16,10 +15,8 @@ import { teamCreateReducer } from "./teamCreateReducer";
 
 const rootReducer = combineReducers({
 	regErrReducer,
-	registerReducer,
 	modalReducer,
 	checkSession,
-	// loginReducer,
 	teamCreateReducer,
 	todosReducer,
 	routing: routerReducer

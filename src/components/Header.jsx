@@ -14,6 +14,7 @@ class Header extends React.Component {
   }
 
   logOut(){
+    console.log("INSIDE LOG OUT");
     this.props.logout();
   }
 
@@ -22,6 +23,7 @@ class Header extends React.Component {
   //   fetch(`http://api.github.com/users/${username}`).then(data => data.json()).then(json=>console.log(json.avatar_url))}
 
   render() {
+    const { avatar } = this.props;
     let noContent = null;
   return(
     <div>
@@ -47,11 +49,8 @@ class Header extends React.Component {
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav">
                   <li><Link to="/">Home</Link></li>
-
-                    {/* <li><Link to="/todo">ToDo</Link></li> */}
-                    <li><Link to="/profile">Profile</Link></li>
-                    <li><Link to="/newproject">Projects</Link></li>
-
+                  <li><Link to="/profile">Profile</Link></li>
+                  <li><Link to="/newproject">Projects</Link></li>
 
                   <li><AsyncExample {...this.props}/></li>
 
@@ -65,7 +64,9 @@ class Header extends React.Component {
                       </button>
                     </li>
                     <li>
-                      <img className='navbar-profilepic img-circle' src='/assets/img/profilepic.jpg' alt='profilepic'/>
+                      <Link to="/profile">
+                      <img className='navbar-profilepic img-circle' src={ avatar ? avatar : "http://www.liveanimalslist.com/birds/images/hen-white-and-black-color.jpg" } alt='profilepic'/>
+                      </Link>
                     </li>
                     <li onClick={this.logOut}>Logout</li>
 

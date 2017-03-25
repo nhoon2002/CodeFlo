@@ -13,6 +13,13 @@ var UserSchema = new Schema({
     trim: true,
     required: "Username is Required"
   },
+  skills: {
+    type: String,
+    trim : true
+  },
+  avatar: {
+    type: String
+  },
   SQLid: {
     type: Number
   },

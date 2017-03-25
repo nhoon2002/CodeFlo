@@ -20,10 +20,6 @@ function mapStateToProps (state) {
 	return {
 		allData: state,
 		errorMsgs: state.regErrReducer.errorMsgs,
-		userAfReg: state.registerReducer.user,
-		sessionUserId: state.registerReducer.sessionUserID,
-		regSessUser: state.registerReducer.sessionUserInfo,
-		isLoggedInReg: state.registerReducer.isLoggedIn,
 		isLoggedInCheck: state.checkSession.isLoggedIn,
 		CheckSeshUserID: state.checkSession.sessionUserID,
 		CheckSeshUser: state.checkSession.sessionUser,

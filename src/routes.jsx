@@ -28,7 +28,6 @@ const theRoutes = (
 		      <Route path="/profile" onEnter={checkSesh} component= {Profile} />
 		      <Route path="/newproject" onEnter={checkSesh} component= {NewProject} />
 		      <Route path="/newproject/:id" onEnter={checkSesh} component= {ProjectDetails} />
-					{/* <Route path="/todo" onEnter={checkSesh} component= {TodoApp} /> */}
 
 		    </Route>
 		</Router>
