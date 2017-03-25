@@ -29,9 +29,6 @@ const theRoutes = (
 		      <Route path="/profile" onEnter={checkSesh} component= {Profile} />
 		      <Route path="/newproject" onEnter={checkSesh} component= {NewProject} />
 		      <Route path="/newproject/:id" component= {ProjectDetails} />
-
-		      {/* <Route path="/todoform" onEnter={checkSesh} component= {TodoForm} /> */}
-
 		    </Route>
 		</Router>
 	</Provider>

@@ -36,6 +36,7 @@ class Register extends Component {
 		var formInput = {
 			name: this.refs.name.value,
 			username: this.refs.username.value,
+			skills: this.refs.skills.value,
 			password: this.refs.password.value,
 			password2: this.refs.password2.value,
 			email: this.refs.email.value
@@ -103,8 +104,12 @@ class Register extends Component {
 						</div>
 						{errs ? msg[1] : success}
 						<div className="form-group">
-						    <label htmlFor="inputUsername" className="sr-only">Username</label>
-						    <input type="text" ref="username" id="inputUsername" className="form-control" placeholder="Username" />
+						    <label htmlFor="inputUsername" className="sr-only">GitHub Username</label>
+						    <input type="text" ref="username" id="inputUsername" className="form-control" placeholder="GitHub Username" />
+						</div>
+						<div className="form-group">
+						    <label htmlFor="skills" className="sr-only">Skills (optional)</label>
+						    <input type="text" ref="skills" id="skills" className="form-control" placeholder="Skills (separate with commas)" />
 						</div>
 						{errs ? msg[4] : success}
 						<div className="form-group">

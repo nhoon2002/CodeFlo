@@ -19,8 +19,8 @@ export function checkSession(state = {
 			return {
 				...state,
 				isLoggedIn: false,
-				sessionUserID: null,
-				sessionUser: null
+				sessionUserID: "",
+				sessionUser: ""
 			}
 		}
 		default: {

@@ -29,8 +29,8 @@ export function registerReducer(state={
 			return {
 				...state,
 				isLoggedIn: false,
-				sessionUserID: null,
-				user: null
+				sessionUserID: "",
+				user: ""
 			}
 		}
 		default: {

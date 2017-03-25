@@ -84,7 +84,7 @@ router.post('/register', function(req, res){
           // req.session.userID = user.id;
           console.log('\n\n')
           // console.log("POST REGISTER CALL BACK FUNCTION DATA", data);
-          monUser.create({ name: user.name, username: user.username, SQLid: user.id }, function (err, doc){
+          monUser.create({ name: user.name, username: user.username, skills: user.skills, SQLid: user.id }, function (err, doc){
             console.log("DOCS AFTER CREATE", doc);
             req.session.userID = doc._id;
             req.session.userData = doc;
@@ -221,6 +221,27 @@ router.get('/logout', function(req, res){
   });
 
 });
+
+router.post('/savepic/:id', function(req, res){
+  console.log("REQ PARAMS", req.params.id)
+  console.log("REQ BODY", req.body.avatarURL)
+  monUser.findOneAndUpdate({ "_id": req.params.id}, { "avatar": req.body.avatarURL }, {"new": true }).exec(function(err, doc){
+    if(err){
+      console.log(err);
+    }else{
+      console.log("DOCS", doc)
+        req.session.userID = doc._id;
+        req.session.userData = doc;
+        console.log("DOCS IN LOGIN ROUTE", doc)
+        res.json({sessionUserId: req.session.userID, sessionInfo: req.session.userData})
+    }
+  });
+});
+
+// router.post('/edit/username', function(req, res){
+  
+  
+// })
 
 router.get('*', function(req,res) {
   console.log('sup');

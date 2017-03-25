@@ -14,10 +14,12 @@ class Header extends React.Component {
   }
 
   logOut(){
+    console.log("INSIDE LOG OUT");
     this.props.logout();
   }
 
   render() {
+    const { avatar } = this.props;
     let noContent = null;
   return(
     <div>
@@ -44,10 +46,8 @@ class Header extends React.Component {
                 <ul className="nav navbar-nav">
                   <li><Link to="/">Home</Link></li>
 
-                    <li><Link to="/todoform">ToDo</Link></li>
                     <li><Link to="/profile">Profile</Link></li>
                     <li><Link to="/newproject">Projects</Link></li>
-
 
                   <li><AsyncExample {...this.props}/></li>
 
@@ -61,7 +61,9 @@ class Header extends React.Component {
                       </button>
                     </li>
                     <li>
-                      <img className='navbar-profilepic img-circle' src='/assets/img/profilepic.jpg' alt='profilepic'/>
+                      <Link to="/profile">
+                      <img className='navbar-profilepic img-circle' src={ avatar ? avatar : "http://www.liveanimalslist.com/birds/images/hen-white-and-black-color.jpg" } alt='profilepic'/>
+                      </Link>
                     </li>
                     <li onClick={this.logOut}>Logout</li>
 

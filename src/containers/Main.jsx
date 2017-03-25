@@ -13,6 +13,7 @@ class Main extends Component {
            logCheck={this.props.isLoggedInCheck}
            logRegCheck={this.props.isLoggedInReg}
            router={this.props.router}
+           avatar={this.props.CheckSeshUser.avatar}
          />
 
 
