@@ -1,6 +1,26 @@
 import axios from 'axios';
 import { browserHistory } from "react-router";
 
+export function addMember(userid, teamid) {
+	return function(dispatch) {
+		axios.post(`/updatemember/${userid}/${teamid}`).then((data) => {
+					console.log("got to addMember", data);
+
+			 })
+
+	}
+}
+
+export function setTodos(todos) {
+	return function(dispatch) {
+		axios.post('/todo', todos).then((data) => {
+			console.log('RETURN TODOS', data);
+		})
+	}
+}
+
+
+
 
 export function createUser(formData) {
 	return function(dispatch) {

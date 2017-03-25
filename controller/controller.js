@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Task = require('../mongoModels/Task.js');
+var Todo = require('../mongoModels/Todo.js');
 var monUser = require('../mongoModels/User')
 var path = require('path');
 
@@ -11,6 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 //MySQL database set-up
 var db = require('../models');
 var Team = require('../mongoModels/Team.js')
+// var User = require('../mongoModels/User.js')
 
 //Sendgrid set-up
 // var email = require('../mail/email');
@@ -20,21 +21,22 @@ router.get('/checkssion', function(req, res){
   res.json({ sessionUserId: req.session.userID, sessionUserInfo: req.session.userData })
 })
 
-router.post('/tasks', function(req, res) {
+router.post('/todo', function(req, res) {
   console.log("\n");
   console.log("controller router post", req.body);
-    var task = new Task(req.body);
-    task.save(function(err, doc) {
+    // var todo = new Todo(req.body);
+    Todo.insertMany(req.body, function(err, doc) {
       if(err) {
         console.log(err);
       } else {
         console.log("\n");
-        console.log("docs",doc);
-        res.send(doc);
+        console.log("TODO DOCS_______________________________@#$!@#$#@!@!#%!@#%!@#%",doc);
+        res.json(doc);
       }
     });
 
 });
+
 
 
 router.post('/register', function(req, res){
@@ -96,6 +98,46 @@ router.post('/register', function(req, res){
   }
 
 });
+
+
+router.post('/updatemember/:userid/:teamid', function(req, res) {
+  var obj = {};
+  var userid = req.params.userid;
+  var teamid = req.params.teamid;
+  console.log("controller router post update team member", userid, teamid);
+
+  monUser.findOneAndUpdate({ "_id": userid}, {$push: {"team": teamid}})
+    .exec(function(err, doc) {
+      console.log("exec. doc=", doc);
+      console.log("obj from monUser query", obj);
+      obj.userTeam = doc;
+      Team.findOneAndUpdate({ "_id": teamid}, {$push: {"teamMembers": userid}})
+        .exec(function(err, doc) {
+          console.log(doc);
+          console.log("obj from Team query", obj);
+          obj.teamUser= doc;
+          res.json(obj);
+        })
+    })
+
+
+})
+
+router.get('/populate', function(req, res) {
+    //  var obj = {};
+
+     Team.find({})
+     .populate("teamMembers")
+     .exec(function(err, doc) {
+         if (err) {
+           console.log(err)
+
+         } else {
+           console.log("\n\nPOPULATE DOC",doc);
+           res.json(doc);
+         }
+           })
+       })
 
 
 

@@ -7,9 +7,9 @@ class ProjectDetails extends React.Component {
     super(props);
 
     this.state = {
-      currentteam: []
+      currentteam: ''
     };
-    // this.handleClick = this.handleClick.bind(this);
+    this.handleJoin = this.handleJoin.bind(this);
   }
 
   componentDidMount() {
@@ -23,16 +23,14 @@ class ProjectDetails extends React.Component {
       });
   }
 
-  // handleClick(e) {
-  //   var id = e.target.dataset.mid;
-  //   console.log(id);
-  //   this.props.router.push('/newProject/'+id)
-  //   // KEEP IN MIND, THIS ONLY WORKS WHEN CLICKING ON THE DIV SPACES, NOT THE TEXT.
-  //   // <div className='container'>
-  //   //   <Header type="posts_show" postId={this.props.params.id}/>
-  //   //   <PostDetailsContainer id={this.props.params.id}/>
-  //   // </div>
-  // }
+  handleJoin(e) {
+    this.props.addMember(this.props.CheckSeshUserID, this.state.currentteam._id)
+    console.log(this.state.currentteam);
+    this.props.router.push('/newproject');
+
+
+
+  }
 
   render() {
 
@@ -45,6 +43,7 @@ class ProjectDetails extends React.Component {
               <h1>{this.state.currentteam.teamname}</h1>
               <h2>{this.state.currentteam.tech}</h2>
               <h3>{this.state.currentteam.description}</h3>
+              <button type='button' onClick={this.handleJoin}>Join Team</button>
             </div>
 
 

@@ -17,6 +17,10 @@ class Header extends React.Component {
     this.props.logout();
   }
 
+  // componentDidMount() {
+  //   var username = "nhoon2002"
+  //   fetch(`http://api.github.com/users/${username}`).then(data => data.json()).then(json=>console.log(json.avatar_url))}
+
   render() {
     let noContent = null;
   return(
@@ -44,7 +48,7 @@ class Header extends React.Component {
                 <ul className="nav navbar-nav">
                   <li><Link to="/">Home</Link></li>
 
-                    <li><Link to="/todoform">ToDo</Link></li>
+                    {/* <li><Link to="/todo">ToDo</Link></li> */}
                     <li><Link to="/profile">Profile</Link></li>
                     <li><Link to="/newproject">Projects</Link></li>
 

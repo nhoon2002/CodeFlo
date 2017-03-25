@@ -5,11 +5,10 @@ import store, { history } from './store.js';
 import App from './containers/App.jsx';
 // import Main from './containers/Main.jsx';
 import Home from './containers/Home.jsx';
-// import Profile from './containers/Profile.jsx';
-// import TodoForm from './containers/TodoForm.jsx';
+import Profile from './containers/Profile.jsx';
+// import TodoApp from './containers/TodoApp.jsx';
 import Register from './containers/Register.jsx';
 import NewProject from './containers/NewProject.jsx';
-import Profile from './containers/Profile.jsx';
 import ProjectDetails from './containers/ProjectDetails.jsx'
 import { checkSession } from './actions/usersAction';
 
@@ -28,9 +27,8 @@ const theRoutes = (
 		      <IndexRoute onEnter={checkSesh} component={Home}/>
 		      <Route path="/profile" onEnter={checkSesh} component= {Profile} />
 		      <Route path="/newproject" onEnter={checkSesh} component= {NewProject} />
-		      <Route path="/newproject/:id" component= {ProjectDetails} />
-
-		      {/* <Route path="/todoform" onEnter={checkSesh} component= {TodoForm} /> */}
+		      <Route path="/newproject/:id" onEnter={checkSesh} component= {ProjectDetails} />
+					{/* <Route path="/todo" onEnter={checkSesh} component= {TodoApp} /> */}
 
 		    </Route>
 		</Router>

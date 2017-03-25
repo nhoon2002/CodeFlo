@@ -142,6 +142,7 @@ li:hover{
 .jumbotron.teams {
   background-color: #B2EBF2;
   text-align: center;
+  overflow: auto;
 }
 .jumbotron.teams h1 {
   color: #B29600;

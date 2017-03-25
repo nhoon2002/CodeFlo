@@ -39,6 +39,7 @@ class ProjectForm extends Component {
 
 
         this.props.create(formInput)
+        this.props.router.push('/newproject');
 
 
       }

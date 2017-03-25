@@ -14,11 +14,11 @@ var TeamSchema = new Schema({
    },
    tech: {
       type: String
-   }
-   //  teamMembers: [{
-   //      type: Schema.Types.ObjectId,
-   //      ref: "User"
-   //  }]
+   },
+    teamMembers: [{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }]
 
 
 });
