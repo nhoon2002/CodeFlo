@@ -37,9 +37,13 @@ app.use(session({
 }));
 
 // -------------------------------------------------
-
+var databaseUri = "mongodb://localhost/sampledatabse10";
+if (process.env.MONGODB_URI) {
+	mongoose.connect(process.env.MONGODB_URI);
+} else {
+	mongoose.connect(databaseUri)
+}
 // MongoDB configuration (Change this URL to your own DB)
-mongoose.connect("mongodb://localhost/sampledatabse10");
 var database = mongoose.connection;
 
 
