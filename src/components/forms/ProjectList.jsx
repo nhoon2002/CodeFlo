@@ -50,8 +50,8 @@ class ProjectList extends React.Component {
 
             <div className='jumbotron teams' onClick={this.handleClick} key={i} data-mid={team._id}>
               <h1 data-mid={team._id}>{team.teamname}</h1>
-              <h2 data-mid={team._id}>{team.tech}</h2>
-              <h3 data-mid={team._id}>{team.description}</h3>
+              {/* <h2 data-mid={team._id}>{team.tech}</h2> */}
+              {/* <h3 data-mid={team._id}>{team.description}</h3> */}
             </div>
           )}
 

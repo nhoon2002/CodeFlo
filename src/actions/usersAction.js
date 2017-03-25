@@ -15,9 +15,9 @@ export function createUser(formData) {
 			}else{
 				console.log("INSIDE CREATE USER ELSE", data)
 				dispatch({ type: "SESSION_EXIST", payload: {
-						sessionUserId: data.data.sessionUserId,
-						sessionUser: data.data.sessionInfo,
-						user: data.data.user
+						checkSessionId: data.data.sessionUserId,
+						checkSessionUser: data.data.sessionInfo
+
 					}
 				});
 				// sessionUserID: action.payload.checkSessionId,

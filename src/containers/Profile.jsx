@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 
 
 class Profile extends Component {
+
 	render() {
+		const {name} = this.props.CheckSeshUser;
+		
 		return (
 
         <div className="row">
@@ -11,7 +14,7 @@ class Profile extends Component {
           <div className="col-md-6 holder">
               <img className="img-circle" src="http://www.placehold.it/200x200" />
               <hr />
-              <h2>{this.props.CheckSeshUser.name}</h2>
+              <h2>{name}</h2>
               <hr />
               <h4>Link: <a href="#">www.porfolio.com/john</a></h4>
               <div className="icons-holder">
